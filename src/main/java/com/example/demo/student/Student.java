@@ -1,8 +1,11 @@
 package com.example.demo.student;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDate;
 
 
+@RestController
 public class Student {
 
     private Long id;
@@ -11,10 +14,12 @@ public class Student {
     private LocalDate dob;
     private int age;
 
+    // empty constructor
     public Student() {
 
     }
 
+    // all elements
     public Student(Long id, String name, String email, LocalDate dob, int age) {
         this.id = id;
         this.name = name;
@@ -23,6 +28,7 @@ public class Student {
         this.age = age;
     }
 
+    // no student id
     public Student(String name, String email, LocalDate dob, int age) {
         this.name = name;
         this.email = email;
@@ -81,3 +87,4 @@ public class Student {
                 '}';
     }
 }
+
