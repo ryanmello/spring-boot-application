@@ -2,6 +2,7 @@ package com.ryanmello;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,9 +31,7 @@ public class Main {
             String name,
             String email,
             Integer age
-    ) {
-
-    }
+    ) { }
 
     @PostMapping
     public void addCustomer(@RequestBody NewCustomerRequest request){
@@ -42,4 +41,20 @@ public class Main {
         customer.setAge(request.age);
         customerRepository.save(customer);
     }
+
+    // delete existing customer
+    @DeleteMapping("{customerId}")
+    public void deleteCustomer(@PathVariable("customerId") Integer id){
+        customerRepository.deleteById(id);
+    }
+
+    // update customer
+//    @PutMapping({"{customerId}"})
+//    public void updateCustomer(@PathVariable("customerId") Integer id, @RequestBody NewCustomerRequest request){
+//        Customer updatedCustomer = customerRepository.findById(id);
+//        updatedCustomer.setName(request.name());
+//        updatedCustomer.setEmail(request.email());
+//        updatedCustomer.setAge(request.age());
+//        customerRepository.save(updatedCustomer);
+//    }
 }
